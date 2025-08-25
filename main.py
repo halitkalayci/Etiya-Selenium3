@@ -1,0 +1,2 @@
+# entrypoint
+print("Merhaba")

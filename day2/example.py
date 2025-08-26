@@ -20,7 +20,7 @@ def login_successfull():
     # Butona tıkla
     waiter.until(expected_conditions.element_to_be_clickable((By.ID, "login-button"))).click()
 
-    # Assertion
+    # Assertion -> ileride değişecek.
     print(driver.current_url == "https://www.saucedemo.com/inventory.html")
     # Tarayıcı kapat.
     driver.quit()
@@ -39,6 +39,21 @@ def login_unsuccessful():
     error_h3 = waiter.until(expected_conditions.visibility_of_element_located((By.XPATH, "//*[@id='login_button_container']/div/form/div[3]/h3")))
     print(error_h3.text == "Epic sadface: Username and password do not match any user in this service")
     driver.quit()
+
+# Sepete ürün ekleme testi.
+# Giriş yap -> Add To Cart butonuna tıklama -> Sağ üstteki sepet ikonunda 1 yazısının doğrulanması.
+def add_item_to_cart():
+    pass
+
+# Bütün ürünlerin listesi alınıp
+# Fiyat değerinin boş olmadığı ve $ ile başladığı.
+def price_format_test():
+    pass
+
+#Giriş yap -> Hamburger menüyü aç -> Çıkış yap -> URL'in giriş sayfasına döndüğünü doğrula.
+def logout():
+    pass
+
 
 
 login_successfull()

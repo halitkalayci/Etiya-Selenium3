@@ -21,7 +21,7 @@ class ElectricCar(Car): #Car'daki bütün özellikler bu classda da vardır.
     def __init__(self, brand, model, year, color, battery):
         super().__init__(brand, model, year, color)
         self.battery = battery
-        
+
     def charge(self):
         print("Araç şarj ediliyor..")
 
@@ -33,3 +33,7 @@ car1.start_rent() # fonk.
 car2 = Car("Fiat","Egea",2024,"Beyaz") # nesneyi üretmek -> nesnenin __init__() çağırmak demek
 print(car2.year)
 car2.start_rent()
+
+electricCar1 = ElectricCar("Tesla","S",2025,"Kırmızı","350")
+electricCar1.start_rent()
+electricCar1.example()

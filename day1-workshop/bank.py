@@ -1,10 +1,14 @@
 import password_utils
 
 def register(username,password):
-    password_utils.is_valid_password(password)
+    valid = password_utils.is_valid_password(password)
+    if not valid:
+        print("Şifre validasyon kurallarına uymuyor.")
 
 def login(username,password):
-    password_utils.is_valid_password(password)
+    valid = password_utils.is_valid_password(password)
+    if not valid:
+        print("Şifre validasyon kurallarına uymuyor.")
 
 
 # Eğer kodlar tekrar ediyorsa ortak bi fonksiyona çevir.

@@ -1,5 +1,5 @@
 def check_password_length(password):
-    return len(password) >= 10
+    return len(password) >= 6
 
 def check_uppercase(password):
     return any(ch.isupper() for ch in password)

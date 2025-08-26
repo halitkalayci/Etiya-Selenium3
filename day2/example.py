@@ -2,17 +2,23 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+import time 
 
-driver = Chrome()
-driver.get("https://www.saucedemo.com/")
-waiter = WebDriverWait(driver, 10) 
+def login_successfull():
+    driver = Chrome()
+    driver.maximize_window()
+    waiter = WebDriverWait(driver, 10) 
+    driver.get("https://www.saucedemo.com/")
+    username_input = waiter.until(expected_conditions.visibility_of_element_located((By.ID, "user-name")))     #driver.find_element(By.ID, "user-name") #locate
+    username_input.send_keys("standard_user")
 
-username_input = waiter.until(expected_conditions.visibility_of_element_located((By.ID, "user-name")))     #driver.find_element(By.ID, "user-name") #locate
-username_input.send_keys("standard_user")
+    waiter.until(expected_conditions.visibility_of_element_located((By.ID,"password"))).send_keys("secret_sauce")
 
-waiter.until(expected_conditions.visibility_of_element_located((By.ID,"password"))).send_keys("secret_sauce")
+    waiter.until(expected_conditions.element_to_be_clickable((By.ID, "login-button"))).click()
 
-waiter.until(expected_conditions.element_to_be_clickable((By.ID, "login-button"))).click()
+login_successfull()
+time.sleep(30)
+
 
 # presence_of_element_located -> Element DOM ağacında var mı?
 # visibility_of_element_located -> Element DOM ağacında var mı ve görünür mü?

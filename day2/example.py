@@ -5,17 +5,24 @@ from selenium.webdriver.support import expected_conditions
 import time 
 
 def login_successfull():
-    driver = Chrome()
-    driver.maximize_window()
-    waiter = WebDriverWait(driver, 10) 
-    driver.get("https://www.saucedemo.com/")
-    username_input = waiter.until(expected_conditions.visibility_of_element_located((By.ID, "user-name")))     #driver.find_element(By.ID, "user-name") #locate
+    driver = Chrome() # Tarayıcı açtım
+    driver.maximize_window() # Tam ekran yaptım
+    waiter = WebDriverWait(driver, 10) # Alarm kurdum, beklediğim olay 10 saniyede gerçekleşmezse çalacak.
+    driver.get("https://www.saucedemo.com/") # Websitesini açtım.
+    # Websitesinde username_inputun gözükmesini bekle.
+    username_input = waiter.until(expected_conditions.visibility_of_element_located((By.ID, "user-name")))   
+    #driver.find_element(By.ID, "user-name") #locate
+    # Elemente tıkla ve yazı yaz.
     username_input.send_keys("standard_user")
 
+    # Şifre inputu için aynılarını yap.
     waiter.until(expected_conditions.visibility_of_element_located((By.ID,"password"))).send_keys("secret_sauce")
-
+    # Butona tıkla
     waiter.until(expected_conditions.element_to_be_clickable((By.ID, "login-button"))).click()
+
+    # Assertion
     print(driver.current_url == "https://www.saucedemo.com/inventory.html")
+    # Tarayıcı kapat.
     driver.quit()
 
 def login_unsuccessful():

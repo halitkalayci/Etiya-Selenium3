@@ -5,18 +5,6 @@ from selenium.webdriver.support import expected_conditions
 import pytest
 # 11:00
 class TestLogin():
-    @pytest.fixture #Bu methodun testlerin öncesi ve sonrasını yönetebilmesini sağlar.
-    def driver(self):
-        driver = Chrome()
-        driver.maximize_window()
-        yield driver
-        driver.quit()
-
-    @pytest.fixture
-    def waiter(self,driver):
-        waiter = WebDriverWait(driver, 10)
-        yield waiter
-
     #@pytest.mark.skip(reason="Bu sprintte devre dışı bırakıldı.")
     def test_success(self, driver, waiter):
         driver.get("https://www.saucedemo.com/")

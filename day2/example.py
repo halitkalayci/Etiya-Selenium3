@@ -43,7 +43,19 @@ def login_unsuccessful():
 # Sepete ürün ekleme testi.
 # Giriş yap -> Add To Cart butonuna tıklama -> Sağ üstteki sepet ikonunda 1 yazısının doğrulanması.
 def add_item_to_cart():
-    pass
+    driver = Chrome() 
+    driver.maximize_window()
+    waiter = WebDriverWait(driver, 10)
+    driver.get("https://www.saucedemo.com/")
+    username_input = waiter.until(expected_conditions.visibility_of_element_located((By.ID, "user-name")))   
+    username_input.send_keys("standard_user")
+    waiter.until(expected_conditions.visibility_of_element_located((By.ID,"password"))).send_keys("secret_sauce")
+    waiter.until(expected_conditions.element_to_be_clickable((By.ID, "login-button"))).click()
+    waiter.until(expected_conditions.element_to_be_clickable((By.ID, "add-to-cart-sauce-labs-backpack"))).click()
+    #cart_badge = waiter.until(expected_conditions.visibility_of_element_located((By.XPATH, "//*[@id='shopping_cart_container']/a/span")))
+    cart_badge = waiter.until(expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")))
+    print("Kart ürün sayı göstergesi: "+cart_badge.text)
+
 
 # Bütün ürünlerin listesi alınıp
 # Fiyat değerinin boş olmadığı ve $ ile başladığı.
@@ -56,8 +68,7 @@ def logout():
 
 
 
-login_successfull()
-login_unsuccessful()
+add_item_to_cart()
 time.sleep(30)
 
 

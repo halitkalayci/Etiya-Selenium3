@@ -1,0 +1,2 @@
+class InventoryPage():
+    pass

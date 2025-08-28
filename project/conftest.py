@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions
 @pytest.fixture 
 def driver():
     options = Options()
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     driver = Chrome(options)
     driver.maximize_window()
     yield driver

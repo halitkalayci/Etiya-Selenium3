@@ -3,6 +3,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from project.pages.login_page import LoginPage
+from selenium.webdriver.support.ui import Select
 
 
 class InventoryPage():
@@ -14,6 +15,7 @@ class InventoryPage():
 
         self.main_container = (By.CSS_SELECTOR, "[data-test='inventory-list']")
         self.products = (By.CLASS_NAME, "inventory_item") 
+        self.sort_dropdown = (By.CSS_SELECTOR, "[data-test='product-sort-container']")
 
     def load(self, username="standard_user", password="secret_sauce"):
         login_page = LoginPage(self.driver, self.wait)   
@@ -32,3 +34,10 @@ class InventoryPage():
     
     def get_cart_badge_text(self):
         return self.wait.until(expected_conditions.visibility_of_element_located(self.cart_badge)).text
+    
+    def select_sort(self, index):
+        dropdown = self.wait.until(expected_conditions.visibility_of_element_located(self.sort_dropdown))
+        
+        # dropdown kullanma.
+        select = Select(dropdown)
+        select.select_by_index(index)

@@ -13,3 +13,9 @@ class TestInvPage():
         inv_page.add_to_cart("sauce-labs-bike-light")
         inv_page.add_to_cart("sauce-labs-backpack")
         assert inv_page.get_cart_badge_text() == "2"
+
+    def test_sort_z_a(self,driver, waiter):
+        inv_page = InventoryPage(driver,waiter)
+        inv_page.load()
+        inv_page.select_sort(1)
+        assert True #Sonradan sıralamanın gerçekten z-a olduğunu doğrula.

@@ -1,7 +1,10 @@
+# Sayfanın seleniumda özellik ve aksiyonlarının nasıl yapıldığının tanımları.
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+
 class LoginPage():
     def __init__(self, driver:Chrome, wait:WebDriverWait):
         self.driver = driver

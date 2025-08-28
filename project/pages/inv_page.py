@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
-from project.pages.login_page import LoginPage
+from pages.login_page import LoginPage
 from selenium.webdriver.support.ui import Select
 
 
@@ -15,6 +15,7 @@ class InventoryPage():
 
         self.main_container = (By.CSS_SELECTOR, "[data-test='inventory-list']")
         self.products = (By.CLASS_NAME, "inventory_item") 
+        self.product_titles = (By.CSS_SELECTOR, "[data-test='inventory-item-name']")
         self.sort_dropdown = (By.CSS_SELECTOR, "[data-test='product-sort-container']")
 
     def load(self, username="standard_user", password="secret_sauce"):
@@ -41,3 +42,9 @@ class InventoryPage():
         # dropdown kullanma.
         select = Select(dropdown)
         select.select_by_index(index)
+    
+    def get_product_titles(self):
+        """Tüm ürün title'larını döndürür"""
+        self.wait.until(expected_conditions.visibility_of_element_located(self.main_container))
+        title_elements = self.driver.find_elements(*self.product_titles)
+        return [element.text for element in title_elements]
